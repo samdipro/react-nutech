@@ -1,0 +1,57 @@
+{
+  "product": [
+    {
+      "id": "1",
+      "imgurl": "http://dummyimage.com/198x100.png/ff4444/ffffff",
+      "name": "sepatu satu",
+      "bprice": 10000,
+      "sprice": 13000
+    },
+    {
+      "id": "2",
+      "imgurl": "http://dummyimage.com/197x100.png/cc0000/ffffff",
+      "name": "sepatu dua",
+      "bprice": 11000,
+      "sprice": 18000
+    },
+    {
+      "id": "3",
+      "imgurl": "http://dummyimage.com/124x100.png/ff4444/ffffff",
+      "name": "sepatu tiga",
+      "bprice": 12000,
+      "sprice": 16000
+    },
+    {
+      "id": "4",
+      "imgurl": "http://dummyimage.com/250x100.png/dddddd/000000",
+      "name": "sepatu empat",
+      "bprice": 14000,
+      "sprice": 18000
+    },
+    {
+      "id": "5",
+      "imgurl": "http://dummyimage.com/250x100.png/dddddd/000000",
+      "name": "sepatu lima",
+      "bprice": 15000,
+      "sprice": 20000
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "name": "test",
+      "email": "test@mail.com",
+      "password": "12345678",
+      "birthdate": "",
+      "gender": "Male"
+    },
+    {
+      "id": 2,
+      "name": "test2",
+      "email": "test2@mail.com",
+      "password": "12345678",
+      "birthdate": "",
+      "gender": "Female"
+    }
+  ]
+}
