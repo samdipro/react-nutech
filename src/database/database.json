@@ -5,35 +5,48 @@
       "imgurl": "http://dummyimage.com/198x100.png/ff4444/ffffff",
       "name": "sepatu satu",
       "bprice": 10000,
-      "sprice": 13000
+      "sprice": 13000,
+      "stock": 10
     },
     {
       "id": "2",
       "imgurl": "http://dummyimage.com/197x100.png/cc0000/ffffff",
       "name": "sepatu dua",
       "bprice": 11000,
-      "sprice": 18000
+      "sprice": 18000,
+      "stock": 10
     },
     {
       "id": "3",
       "imgurl": "http://dummyimage.com/124x100.png/ff4444/ffffff",
       "name": "sepatu tiga",
       "bprice": 12000,
-      "sprice": 16000
+      "sprice": 16000,
+      "stock": 10
     },
     {
       "id": "4",
       "imgurl": "http://dummyimage.com/250x100.png/dddddd/000000",
       "name": "sepatu empat",
-      "bprice": 14000,
-      "sprice": 18000
+      "bprice": "14000",
+      "sprice": 18000,
+      "stock": 10
     },
     {
-      "id": "5",
-      "imgurl": "http://dummyimage.com/250x100.png/dddddd/000000",
-      "name": "sepatu lima",
-      "bprice": 15000,
-      "sprice": 20000
+      "imgurl": "https://i.ibb.co/vmtpNZW/malaysia.png",
+      "name": "bendera",
+      "bprice": "22",
+      "sprice": "23",
+      "stock": "1",
+      "id": "AcDrvoq"
+    },
+    {
+      "name": "sama",
+      "bprice": "123",
+      "sprice": "123",
+      "stock": "123",
+      "imgurl": "https://i.ibb.co/fHsjKT5/dust1.png",
+      "id": "zPwoiab"
     }
   ],
   "user": [

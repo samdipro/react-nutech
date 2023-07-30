@@ -1,7 +1,11 @@
-import { Box, Container, Flex, Icon, Image, Text } from "@chakra-ui/react";
-import { RiShoppingCartFill } from "react-icons/ri";
-import { SiHomeassistantcommunitystore } from "react-icons/si";
-import { BsFilePerson } from "react-icons/bs";
+import {
+  Box,
+  Container,
+  Flex,
+  Icon,
+  Image,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { GrCaretNext, GrCaretPrevious } from "react-icons/gr";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -9,15 +13,46 @@ import show1 from "../img/showshoes.png";
 import show2 from "../img/shoes2.png";
 import show3 from "../img/shoes3.png";
 import axios from "axios";
-const api = "http://localhost:3001/";
+import Navbar from "../component/Navbar";
+import { useEffect, useState } from "react";
+import ModalProduct from "../component/ModalProduct";
+const api = "http://localhost:5000/";
 
 export default function HomePage() {
-  async function fetch() {
-    await axios.get(api + "product").then((res) => {
-      console.log(res.data);
-    });
+  // modal product details
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [modal, setModal] = useState({});
+  // const [page, setPage] = useState(1);
+
+  // product state
+  const [product, setProduct] = useState([]);
+
+  // GET
+  async function fetch(page) {
+    console.log(page);
+    await axios
+      .get(api + "product", {
+        // params: { _limit: 3, _page: page },
+      })
+      .then((res) => {
+        // console.log(res.headers["x-total-count"]);
+        // let total = Math.ceil(res.headers["x-total-count"] / 2);
+        // if (total >= page && page > 0) {
+        //   setProduct(res.data);
+        // } else if (page) {
+        //   page--;
+        // } else {
+        //   page = 1;
+        // }
+        setProduct(res.data);
+      });
   }
-  fetch();
+
+  // Did Mount
+  useEffect(() => {
+    fetch();
+  }, []);
+
   const showing = [
     <Box>
       <Box>NEW This Month</Box>
@@ -65,11 +100,11 @@ export default function HomePage() {
           boxShadow={".4rem .4rem #FF8551"}
           zIndex={"1"}
         >
-          STORE + SHOES
+          NuTech + SHOES
         </Box>
 
         <Flex
-          height={"50%"}
+          // height={"50%"}
           borderRadius={"1rem"}
           border={".5vmin solid #05060f"}
           boxShadow={".4rem .4rem #05060f"}
@@ -85,6 +120,7 @@ export default function HomePage() {
               {showing.map((val) => val)}
             </Carousel>
           </Box>
+          {/* Carousel */}
         </Flex>
         <Flex
           justifyContent={"start"}
@@ -94,65 +130,68 @@ export default function HomePage() {
           flexWrap={"wrap"}
           gap={"1rem"}
         >
-          <Flex
-            flexDir={"column"}
-            alignItems={"center"}
-            padding={"4px"}
-            w={"30%"}
-            bgColor={"#FAF0E4"}
-            boxShadow={".4rem .4rem #05060f"}
-          >
-            <Image
-              maxW={"100px"}
-              src={"http://dummyimage.com/198x100.png/ff4444/ffffff"}
-            ></Image>
-            <Box>Title Judul</Box>
-          </Flex>
+          {product.map((val, idx) => {
+            return (
+              <>
+                <Flex
+                  flexDir={"column"}
+                  alignItems={"center"}
+                  padding={"4px"}
+                  w={"30%"}
+                  bgColor={"#FAF0E4"}
+                  boxShadow={".4rem .4rem #05060f"}
+                  justifyContent={"space-evenly"}
+                  onClick={() => {
+                    onOpen();
+                    setModal(val);
+                  }}
+                  cursor={"pointer"}
+                >
+                  <Image maxW={"100px"} src={val.imgurl}></Image>
+                  <Box>{val.name}</Box>
+                </Flex>
+                <ModalProduct
+                  modal={modal}
+                  isOpen={isOpen}
+                  onClose={onClose}
+                ></ModalProduct>
+              </>
+            );
+          })}
         </Flex>
         <Flex justifyContent={"center"} alignItems={"center"} gap={"1rem"}>
           <Flex>
-            <Icon cursor={"pointer"} as={GrCaretPrevious}></Icon>
+            <Icon
+              cursor={"pointer"}
+              as={GrCaretPrevious}
+              id={"minus"}
+              // onClick={async () => {
+              //   const p = await fetch(page - 1);
+              //   return setPage(p);
+              // }}
+            ></Icon>
           </Flex>
           <Flex gap={"0.5rem"}>
-            <Box>1</Box>
             <Box fontWeight={"bold"} fontSize={"xl"}>
-              2
+              {/* {page} */}
+              page:
             </Box>
-            <Box>3</Box>
           </Flex>
           <Flex>
-            <Icon cursor={"pointer"} as={GrCaretNext}></Icon>
+            <Icon
+              cursor={"pointer"}
+              as={GrCaretNext}
+              id={"plus"}
+              // onClick={async () => {
+              //   const p = await fetch(page + 1);
+              //   return setPage(p);
+              // }}
+            ></Icon>
           </Flex>
         </Flex>
-        <Flex
-          position={"sticky"}
-          bottom={0}
-          // marginBottom={"8px"}
-          width={"100%"}
-          // height={"50px"}
-          justifyContent={"space-evenly"}
-          bgColor={"#FFDEDE"}
-          boxShadow={".4rem .4rem #FF8551"}
-          padding={"1rem 0"}
-          fontSize={"1.2rem"}
-        >
-          <Icon
-            cursor={"pointer"}
-            _hover={{ color: "#FF8551" }}
-            as={RiShoppingCartFill}
-          ></Icon>
-          <Icon
-            cursor={"pointer"}
-            _hover={{ color: "#FF8551" }}
-            color={"#FF8551"}
-            as={SiHomeassistantcommunitystore}
-          ></Icon>
-          <Icon
-            cursor={"pointer"}
-            _hover={{ color: "#FF8551" }}
-            as={BsFilePerson}
-          ></Icon>
-        </Flex>
+        {/* import Navbar Component */}
+        <Navbar></Navbar>
+        {/* import Navbar Component*/}
       </Flex>
     </Container>
   );
