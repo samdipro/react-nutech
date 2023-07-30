@@ -14,7 +14,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // import img from "../img/pic.png";
 
-const api = "http://localhost:5000/";
+const api = "https://mock-db-nutech.onrender.com/";
 const imgBbApiKey = "b1bfb232bbb29cee9086fc2935b6e86b";
 export default function ProductPage() {
   const nav = useNavigate();

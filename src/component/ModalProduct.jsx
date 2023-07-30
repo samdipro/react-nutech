@@ -26,7 +26,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
-const api = "http://localhost:5000/";
+const api = "https://mock-db-nutech.onrender.com/";
 
 export default function ModalProduct(props) {
   // const nav = useNavigate();

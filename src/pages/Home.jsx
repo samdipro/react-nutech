@@ -16,7 +16,7 @@ import axios from "axios";
 import Navbar from "../component/Navbar";
 import { useEffect, useState } from "react";
 import ModalProduct from "../component/ModalProduct";
-const api = "http://localhost:5000/";
+const api = "https://mock-db-nutech.onrender.com/";
 
 export default function HomePage() {
   // modal product details
